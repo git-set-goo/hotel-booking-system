@@ -1,0 +1,29 @@
+server:
+  port: 8080
+
+spring:
+  datasource:
+    url: jdbc:h2:mem:hoteldb
+    username: sa
+    password: ""
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: true
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+
+hotel:
+  reservation:
+    max-stay-days: 30
+    min-advance-hours: 2
+  payment:
+    gateway:
+      url: https://payments.example.internal/api
+      api-key: ${PAYMENT_GATEWAY_API_KEY:changeme}
+      timeout-ms: 5000
+  notification:
+    email:
+      enabled: true
+      from-address: reservations@hotelbooking.example
